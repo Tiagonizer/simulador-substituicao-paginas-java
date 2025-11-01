@@ -4,29 +4,24 @@ https://github.com/Tiagonizer/simulador-substituicao-paginas-java
 # Simulador de Algoritmos de Substituição de Páginas (Java)
 
 O simulador foi desenvolvido em Java para demonstrar e comparar o desempenho de quatro algoritmos de substituição de páginas:
-FIFO (First In, First Out), LRU (Least Recently Used), Ótimo (Optimal) e Relógio (Clock). A escolha do Java atende aos requisitos
-do projeto e permite a implementação clara das estruturas de dados necessárias para simular o gerenciamento de memória.
+FIFO (First In, First Out), LRU (Least Recently Used), Ótimo (Optimal) e Relógio (Clock). Permite a implementação clara das estruturas de dados necessárias para simular o gerenciamento de memória e inclui uma interface gráfica simples desenvolvida com **Java Swing**.
 
 ## Algoritmos Implementados
 
-O simulador é implementado na classe PageReplacementSimulator.java, que contém quatro métodos estáticos, cada um implementando um
-algoritmo de substituição, e o método principal (main) que coordena o processo e apresenta os resultados.
+O simulador é implementado na classe PageReplacementSimulator.java, que contém quatro métodos estáticos, cada um implementando um algoritmo de substituição, e o método principal (main) que coordena o processo e apresenta os resultados.
 
 1.
 simulateFIFO(List<Integer> referenceString, int frameCount): Implementa a lógica FIFO, utilizando uma LinkedList para simular
  a fila de páginas na memória. A página mais antiga (primeira da lista) é substituída.
 
 3.
-simulateLRU(List<Integer> referenceString, int frameCount): Implementa a lógica LRU, também utilizando uma LinkedList. A página menos
-recentemente usada é sempre a primeira da lista, e a página acessada é movida para o final (mais recentemente usada).
+simulateLRU(List<Integer> referenceString, int frameCount): Implementa a lógica LRU, também utilizando uma LinkedList. A página menos recentemente usada é sempre a primeira da lista, e a página acessada é movida para o final (mais recentemente usada).
 
 5.
-simulateOptimal(List<Integer> referenceString, int frameCount): Implementa o algoritmo Ótimo, que substitui a página que será usada
- mais tarde no futuro. Este algoritmo requer uma análise prospectiva da string de referência.
+simulateOptimal(List<Integer> referenceString, int frameCount): Implementa o algoritmo Ótimo, que substitui a página que será usada mais tarde no futuro. Este algoritmo requer uma análise prospectiva da string de referência.
 
 7.
-simulateClock(List<Integer> referenceString, int frameCount): Implementa o algoritmo do Relógio (Second Chance), utilizando um
- array de objetos com um bit de uso (useBit) para dar uma "segunda chance" à página antes de ser substituída.
+simulateClock(List<Integer> referenceString, int frameCount): Implementa o algoritmo do Relógio (Second Chance), utilizando um array de objetos com um bit de uso (useBit) para dar uma "segunda chance" à página antes de ser substituída.
 
 
 
@@ -34,12 +29,11 @@ simulateClock(List<Integer> referenceString, int frameCount): Implementa o algor
 
 Para a simulação, foram utilizados os seguintes parâmetros, definidos como constantes na classe:
 
-Parâmetro
-Valor
-String de Referência
-[7, 0, 1, 2, 0, 3, 0, 4, 2, 3, 0, 3, 2, 1, 2, 0, 1, 7, 0, 1]
-Número de Frames
-3
+| Parâmetro | Valor |
+| :--- | :--- |
+| String de Referência | `[7, 0, 1, 2, 0, 3, 0, 4, 2, 3, 0, 3, 2, 1, 2, 0, 1, 7, 0, 1]` |
+| Número de Frames | `3` |
+
 
 
 
@@ -47,12 +41,12 @@ Número de Frames
 ## Resultados
 
 A execução do simulador com os dados de entrada definidos resultou no seguinte número de faltas de página para cada algoritmo:
-
-Algoritmo   Faltas de Página
-FIFO          15
-LRU           12
-Ótimo         9
-Relógio       14
+| Algoritmo | Faltas de Página |
+| :--- | :--- |
+| **FIFO** | 15 |
+| **LRU** | 12 |
+| **Ótimo** | 9 |
+| **Relógio** | 14 |
 
 
 ## Análise dos Resultados:
