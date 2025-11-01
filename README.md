@@ -3,56 +3,65 @@ https://github.com/Tiagonizer/simulador-substituicao-paginas-java
 
 # Simulador de Algoritmos de Substituição de Páginas (Java)
 
-Este projeto contém um simulador em **Java** para comparar o desempenho de diferentes algoritmos de substituição de páginas em um sistema de gerenciamento de memória virtual.
+O simulador foi desenvolvido em Java para demonstrar e comparar o desempenho de quatro algoritmos de substituição de páginas:
+FIFO (First In, First Out), LRU (Least Recently Used), Ótimo (Optimal) e Relógio (Clock). A escolha do Java atende aos requisitos
+do projeto e permite a implementação clara das estruturas de dados necessárias para simular o gerenciamento de memória.
 
 ## Algoritmos Implementados
 
-O simulador inclui a implementação dos seguintes algoritmos:
+O simulador é implementado na classe PageReplacementSimulator.java, que contém quatro métodos estáticos, cada um implementando um
+algoritmo de substituição, e o método principal (main) que coordena o processo e apresenta os resultados.
 
-1.  **FIFO** (First In, First Out)
-2.  **LRU** (Least Recently Used)
-3.  **Ótimo** (Optimal)
-4.  **Relógio** (Clock / Second Chance)
+1.
+simulateFIFO(List<Integer> referenceString, int frameCount): Implementa a lógica FIFO, utilizando uma LinkedList para simular
+ a fila de páginas na memória. A página mais antiga (primeira da lista) é substituída.
 
-## Como Executar
+3.
+simulateLRU(List<Integer> referenceString, int frameCount): Implementa a lógica LRU, também utilizando uma LinkedList. A página menos
+recentemente usada é sempre a primeira da lista, e a página acessada é movida para o final (mais recentemente usada).
 
-Para executar o simulador, você precisa ter o **Java Development Kit (JDK)** instalado em seu sistema (versão 8 ou superior).
+5.
+simulateOptimal(List<Integer> referenceString, int frameCount): Implementa o algoritmo Ótimo, que substitui a página que será usada
+ mais tarde no futuro. Este algoritmo requer uma análise prospectiva da string de referência.
 
-1.  **Baixe o arquivo:**
-    Faça o download do arquivo `PageReplacementSimulator.java`.
+7.
+simulateClock(List<Integer> referenceString, int frameCount): Implementa o algoritmo do Relógio (Second Chance), utilizando um
+ array de objetos com um bit de uso (useBit) para dar uma "segunda chance" à página antes de ser substituída.
 
-2.  **Compile o código:**
-    Abra o terminal ou prompt de comando, navegue até o diretório onde você salvou o arquivo e execute o seguinte comando para compilar:
 
-    ```bash
-    javac PageReplacementSimulator.java
-    ```
 
-3.  **Execute o programa:**
-    Após a compilação, execute o programa com o seguinte comando:
+## Dados de Entrada
 
-    ```bash
-    java PageReplacementSimulator
-    ```
+Para a simulação, foram utilizados os seguintes parâmetros, definidos como constantes na classe:
+
+Parâmetro
+Valor
+String de Referência
+[7, 0, 1, 2, 0, 3, 0, 4, 2, 3, 0, 3, 2, 1, 2, 0, 1, 7, 0, 1]
+Número de Frames
+3
+
+
+
 
 ## Resultados
 
-O programa irá imprimir no console os resultados da simulação, mostrando o número de faltas de página para cada um dos quatro algoritmos, utilizando a string de referência e o número de frames definidos no código.
+A execução do simulador com os dados de entrada definidos resultou no seguinte número de faltas de página para cada algoritmo:
 
-**Exemplo de Saída:**
+Algoritmo   Faltas de Página
+FIFO          15
+LRU           12
+Ótimo         9
+Relógio       14
 
-```
---- Simulador de Algoritmos de Substituição de Páginas ---
-String de Referência: [7, 0, 1, 2, 0, 3, 0, 4, 2, 3, 0, 3, 2, 1, 2, 0, 1, 7, 0, 1]
-Número de Frames: 3
 
-Faltas de Página:
-- Método FIFO - 15 faltas de página
-- Método LRU - 12 faltas de página
-- Método Ótimo - 9 faltas de página
-- Método Relógio - 14 faltas de página
-```
+## Análise dos Resultados:
 
-## Configuração
+• O algoritmo Ótimo obteve o menor número de faltas (9), o que é esperado, pois ele representa o limite teórico de desempenho.
 
-Você pode alterar a **string de referência de páginas** (`PAGE_REFERENCE_STRING`) e o **número de frames** (`FRAME_COUNT`) diretamente no arquivo `PageReplacementSimulator.java` para testar diferentes cenários.
+• O LRU (12 faltas) demonstrou ser mais eficiente que o FIFO (15 faltas) e o Relógio (14 faltas) para a string de referência utilizada, indicando que a heurística de substituir a página menos recentemente usada é mais eficaz neste cenário.
+
+• O Relógio (14 faltas) apresentou um desempenho ligeiramente melhor que o FIFO, confirmando sua natureza como uma aproximação mais eficiente do LRU com menor overhead de implementação.
+
+Estes resultados demonstram a importância da escolha do algoritmo de substituição de páginas para o desempenho do sistema de gerenciamento de memória virtual.
+
